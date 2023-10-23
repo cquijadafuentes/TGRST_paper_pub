@@ -169,7 +169,7 @@ int main(int argc, char const *argv[]){
 	cout << "allEqual\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
 
 	//////////////////	allIntersect 	//////////////////
-/*
+
 	resNaive = 0;
 	cout << "Ejecutando allIntersect Naive..." << endl;
 	t0 = clock();
@@ -196,9 +196,9 @@ int main(int argc, char const *argv[]){
 
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST" << endl;
 	cout << "allIntersect\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << endl;
-*/
+
 	//////////////////	allIntersectPP 	//////////////////
-/*
+
 	resNaive = 0;
 	cout << "Ejecutando allIntersectPP Naive..." << endl;
 	t0 = clock();
@@ -225,6 +225,6 @@ int main(int argc, char const *argv[]){
 
 	cout << "operacion\trutas\tqueries\ttNaive\ttGST\t[us]\trNaive\trGST\tk" << endl;
 	cout << "allIntersectPP\t" << gst.n_rutas << "\t" << num_queries << "\t" << tNaive << "\t" << tGST << "\t[us]\t" << resNaive << "\t" << resGST << "\t" << minIntersection << endl;
-*/
+
 	return 0;
 }
