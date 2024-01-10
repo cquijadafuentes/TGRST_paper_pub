@@ -51,7 +51,6 @@ int main(int argc, char const *argv[]){
 	consultas.close();
 	// Ejecutando consultas
 	unsigned long t0 = clock();
-	unsigned originalt0 = clock();
 	switch(id_operacion){
 		case 1:
 			for(int i=0; i<n_consultas; i++){
@@ -82,13 +81,10 @@ int main(int argc, char const *argv[]){
 			return 0;
 	}
 	unsigned long t1 = clock();
-	unsigned originalt1 = clock();
 	double tiempo = (double)(t1 - t0);
 	tiempo /= CLOCKS_PER_SEC;
 	tiempo /= n_consultas;
 	tiempo *=  1000000;
 	cout << tiempo << " [us]" << endl;
-	double tNaive = ((((double)(originalt1 - originalt0)) / CLOCKS_PER_SEC) / n_consultas)* 1000000;
-	cout << "Original: " <<tiempo << " [us]" << endl;
 	return 0;
 }

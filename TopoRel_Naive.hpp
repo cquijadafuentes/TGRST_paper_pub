@@ -19,16 +19,6 @@ pair<int,int> KMPSearch(int_vector<> &pat, int_vector<> &txt);
 void computeLPSArray(int_vector<> &pat, int M, int* lps);
 pair<int,bool> lcs_info(int_vector<> &s, int_vector<> &t);
 
-// 8 relaciones topológicas binarias básicas
-bool tr_equals(int_vector<> &a, int_vector<> &b);
-//bool tr_coveredby(vector<int> &a, vector<int> &b);
-//bool tr_covers(vector<int> &a, vector<int> &b);
-//bool tr_disjoint(vector<int> &a, vector<int> &b);
-//bool tr_includes(vector<int> &a, vector<int> &b);
-//bool tr_inside(vector<int> &a, vector<int> &b);
-//bool tr_overlaps(vector<int> &a, vector<int> &b);
-//bool tr_touches(vector<int> &a, vector<int> &b);
-
 // Relaciones topológicas en conjunto 
 vector<int> tr_allContain(vector<int_vector<>> &r, int x);
 vector<int> tr_allEqual(vector<int_vector<>> &r, int x);
