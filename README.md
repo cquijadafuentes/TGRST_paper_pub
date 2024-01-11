@@ -1,56 +1,44 @@
 # TGRST_paper_pub
-Respository with clean codes of TGRST paper.
-Este repositorio tiene por objetivo difundir la implementación funcional del Topological Relation Generalized Suffix-Tree (TRGST).
-Esta implementación representa un conjunto de caminos como secuencias en un Generalized Suffix-Tree y permite el realizar consultas de relaciones entre los caminos.
-La clase ToporRel_GST (.cpp y .hpp) corresponde a la implementación de la estructura basada en elementos de la librería sdsl de Simón Gog.
-La implementación ingenua que se utiliza como baseline de comparación en el artículo esta en la clase TopoRel_Naive (.cpp y .hpp) y también utiliza elementos de la librería sdsl.
+Repository with clean code for the TGRST paper.
 
-Para la instalación de la librería se deben seguir las instrucciones estándar del repositorio: https://github.com/simongog/sdsl-lite
+This repository aims to disseminate the functional implementation of the Topological Relation Generalized Suffix-Tree (TRGST). This implementation represents a set of paths as sequences in a Generalized Suffix-Tree, enabling efficient queries on relations between these paths.
 
-El código publicado es funcional y se proporcionan dos archivos para realizar pruebas de las funciones implementadas.
+### Code Description:
 
-# Archivos de Prueba
+- **TopoRel_GST.cpp and TopoRel_GST.hpp:** Implementation of the structure based on elements from the sdsl library by Simón Gog.
 
-En la carpeta ./dataset/ se pueden encontrar tres archivos:
+- **TopoRel_Naive.cpp and TopoRel_Naive.hpp:** Naive implementation used as a baseline for comparison in the article, also utilizing elements from the sdsl library.
 
-- gst_tripsMadrid_0005k.txt
-	Corresponde al archivo con la definición del conjunto de caminos que se utiliza como entrada para la representación ingenua (naive). El formato es un archivo de texto plano donde la primera línea contiene dos enteros separados por un espacio, el primero indica la cantidad de caminos que contiene el archivo y el segundo la cantidad de stops para la red sobre la que pasan estos caminos. Luego siguen tantas líneas como caminos del conjunto, donde cada linea define primero un entero con la cantidad de elementos que componen la secuencia y luego, separados por espacio, todos los identificadores que componen el camino correspondiente. Cada identificador corresponde a un número entero que puede estar entre [1,s], donde s es la cantidad de stops de la red sobre la que se definen los caminos.
+### Prerequisites:
 
-- gst_tripsMadrid_0005k.gst
-	Corresponde a la representación en formato TRGST para el mismo conjunto anterior. Esta construcción se puede hacer mediante la ejecución del ./TopoRel_GST_build entregando como parámetro el archivo naive (.txt) y el nombre del archivo de salida (.gst), tal como muestra el siguiente ejemplo:
-	./TopoRel_GST_build dataset/gst_tripsMadrid_0005k.txt dataset/gst_tripsMadrid_0005k.gst
+To install the required library, follow the standard instructions in the repository: [sdsl-lite](https://github.com/simongog/sdsl-lite)
 
-- gst_tripsMadrid_0005k.queries
-	Este archivo contiene las consultas que se utilizan para ejecutar pruebas en las que se realizan varias consultas de una sola ejecución. Este archivo contiene dos líneas, en la primera se indica la cantidad de consultas que contiene el archivo y la segunda línea contiene los elementos a consultar separados por espacios. Cada elemento corresponde a un identificador del conjunto de caminos para el que corresponde el archivo de consultas.
+The provided code is functional, and two test files are included to evaluate the implemented functions.
 
+### Test Files:
 
-# Archivos posibles a ejecutar
+In the "./dataset/" folder, three files are available:
 
-Al compilar el proyecto (recordar que se requiere la instalación previa de la librería sdsl) se generan los archivos ejecutables que se listan a continuación:
+- **gst_tripsMadrid_0005k.txt:** Defines the set of paths used as input for the naive representation. The format is a plain text file where the first line contains two integers, indicating the number of paths and stops in the network. Subsequent lines define each path, starting with an integer indicating the number of elements in the sequence, followed by identifiers representing stops.
 
-time_allTopoRels_byQueriesFile
-	Entrada: 
-		input_file.txt: Nombre del archivo de entrada en formato naive (.txt).
-		input_file.gst: Nombre del archivo de entrada en formato TRGST (.gst).
-		queries_file: Nombre del archivo de consultas.
-		repeticiones: Cantidad de repeticiones a utilizar para determinar el tiempo promedio de responder las consultas.
-		min_intersetion (opcional): Cantidad de intersecciones requeridas para calcular resultado de all_intersect.
-	Salida: Por cada una de las operaciones implementadas entrega nombre de la operación, cantidad de rutas del conjunto, cantidad de consultas de la ejecución, tiempo de la implementación Naive, tiempo de la implementación TRGST, cantidad de elementos en el resultado de la implementación Naive, y cantidad de elementos en el resultado de la implementación TRGST.
+- **gst_tripsMadrid_0005k.gst:** TRGST representation for the same set of paths. To build this, execute "./TopoRel_GST_build" with the naive file as input, as shown in the example: `./TopoRel_GST_build dataset/gst_tripsMadrid_0005k.txt dataset/gst_tripsMadrid_0005k.gst`
 
-TopoRel_GST_build
-	Entrada: nombre del archivo de entrada (formato naive) y nombre del archivo de salida (formato .gst)
-	Salida: al finalizar su ejecución se construyó en base al archivo de entrada la representación en formato TRGST en el archivo de salida.
+- **gst_tripsMadrid_0005k.queries:** Contains queries for running tests where multiple queries are executed in a single run. The file includes the number of queries and the elements to query.
 
-TopoRel_GST_size
-	Entrada: nombre del archivo de entrada (Debe estar en formato .gst)
-	Salida: tamaño en bytes de cada sub-estructura que compone el TRGST.
+### Executable Files:
 
-TopoRel_GST_test: La entrada corresponde al nombre del archivo en formato trgst. Despliega un menú de opciones que permite probar algunas de las funcionalidades implementadas con salida en detalle y permitiendo ejecutar consultas por identificadores ingresados manualmente.
+Upon compiling the project (remember to install the sdsl library first), the following executable files are generated:
 
-TopoRel_GST_time: 
-	Entrada: nombre del archivo de entrada en formato gst, nombre del archivo de consultas, identificador de la operación que se desea ejecutar.
-	El identificador puede ser: (1) allContain, (2) allContained, (3) allEqual, ó (4) allIntersect.
-	Salida: tiempo que tarda en calcularse la operación indicada por el id de la operación.
+- **time_allTopoRels_byQueriesFile:** Calculates the average time to respond to queries. Input parameters include input_file.txt, input_file.gst, queries_file, repetitions, and optionally min_intersection. Outputs operation names, path count, query count, time for Naive implementation, time for TRGST implementation, Naive result size, and TRGST result size for each operation.
 
-Los archivos TopoRel_Naive_size, TopoRel_Naive_test, y TopoRel_Naive_time son equivalentes a los antes descritos pero con la entrada correspondiente a archivos en formato naive.
+- **TopoRel_GST_build:** Builds the TRGST representation based on the naive input file and outputs to a specified file.
+
+- **TopoRel_GST_size:** Outputs the size in bytes of each sub-structure that composes the TRGST.
+
+- **TopoRel_GST_test:** Menu-driven executable allowing manual testing of implemented functionalities with detailed output and query execution.
+
+- **TopoRel_GST_time:** Measures the time taken for a specified operation (allContain, allContained, allEqual, or allIntersect) using TRGST.
+
+Similar files with "_Naive" in their names correspond to naive implementation equivalents.
+
 
